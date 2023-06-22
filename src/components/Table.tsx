@@ -1,14 +1,9 @@
-import { createSignal, onCleanup, on } from 'solid-js';
-import { Component, createEffect } from 'solid-js';
-import ItemTable from './ItemTable';
+import { createSignal, onCleanup, on } from "solid-js";
+import { Component, createEffect } from "solid-js";
+import ItemTable from "./ItemTable";
+import { ItemProps } from "./ItemTable";
 
-interface ItemProps {
-  id: number,
-  name: string,
-  editor: string,
-  nb_players: number
-}
-
+import gameserive from "../services/gameFetch";
 
 const DataTable = () => {
   const [data, setData] = createSignal<ItemProps[]>([]);
@@ -26,18 +21,29 @@ const DataTable = () => {
   })
 
   return (
-    <table>
+    <table class="min-w-full divide-y divide-gray-700">
       <thead>
         <tr>
-          {Object.keys(data()).map((key) => (
-            <th>{key}</th>
-          ))}
+          <th class="px-3 py-3.5 text-left text-sm font-semibold text-white">
+            Nom
+          </th>
+          <th class="px-3 py-3.5 text-left text-sm font-semibold text-white">
+            Editeur
+          </th>
+          <th class="px-3 py-3.5 text-left text-sm font-semibold text-white">
+            Nombre de joueur
+          </th>
         </tr>
       </thead>
       <tbody>
-        {data().map((item) => 
-            <ItemTable id={item.id} name={item.name} editor={item.editor} nb_players={item.nb_players} />
-        )}
+        {data().map((item) => (
+          <ItemTable
+            id={item.id}
+            name={item.name}
+            editor={item.editor}
+            nb_players={item.nb_players}
+          />
+        ))}
       </tbody>
     </table>
   );

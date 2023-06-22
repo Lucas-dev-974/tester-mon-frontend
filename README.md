@@ -1,34 +1,51 @@
-## Usage
+## Start
+    npm install 
+    npm run dev
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+## Setup JEST with SolidJS
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+    npm install --save-dev jest
+    npm install --save-dev @babel/preset-typescript
+    npm install --save-dev @testing-library/jest-dom
+    npm install --save-dev solid-jest
+    npm install --save-dev jest-environment-jsdom
+    npm install --save-dev @solidjs/testing-library
+    npm install --save-dev @testing-library/user-event
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+## Create .babelrc
+    cat > .babelrc <<- EOF
+    {
+        "presets": [
+            "@babel/preset-env",
+            "babel-preset-solid",
+            "@babel/preset-typescript"
+        ]
+    }
+    EOF
 
-## Available Scripts
+Or just create file manually and add
 
-In the project directory, you can run:
+    {
+        "presets": [
+            "@babel/preset-env",
+            "babel-preset-solid",
+            "@babel/preset-typescript"
+        ]
+    }
+    
+## Config JEST in packjage.json
+Add: 
 
-### `npm run dev` or `npm start`
+    "jest": {
+        "preset": "solid-jest/preset/browser",
+        "setupFilesAfterEnv": [
+        "<rootDir>/node_modules/@testing-library/jest-dom/extend-expect"
+        ],
+        "testEnvironment": "jsdom"
+    },
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+    "scripts": {
+        ...,
+        "test": "jest"
+    }
