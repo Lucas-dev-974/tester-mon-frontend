@@ -1,25 +1,11 @@
-import { createSignal, onCleanup, on } from "solid-js";
-import { Component, createEffect } from "solid-js";
 import ItemTable from "./ItemTable";
 import { ItemProps } from "./ItemTable";
 
-import gameserive from "../services/gameFetch";
+interface tableProps {
+  items: ItemProps[];
+}
 
-const DataTable = () => {
-  const [data, setData] = createSignal<ItemProps[]>([]);
-
-  // Fonction pour récupérer les données du tableau (par exemple, à partir d'une API)
-  const fetchData = async () => {
-    // Effectuer une requête API ou obtenir les données d'une autre source
-    const response = await fetch('http://127.0.0.1:8000/api/game/');
-    const jsonData = await response.json();
-    setData(jsonData);
-  };
-
-  createEffect(async () => {
-    await fetchData()
-  })
-
+const DataTable = (props: tableProps) => {
   return (
     <table class="min-w-full divide-y divide-gray-700">
       <thead>
@@ -36,7 +22,7 @@ const DataTable = () => {
         </tr>
       </thead>
       <tbody>
-        {data().map((item) => (
+        {props.items.map((item) => (
           <ItemTable
             id={item.id}
             name={item.name}
