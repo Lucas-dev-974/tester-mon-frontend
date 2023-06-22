@@ -4,7 +4,7 @@ import DataTable from "./components/Table";
 
 const App: Component = () => {
   return (
-    <main id="main-app">
+    <main class="container mx-auto mt-10">
       <DataTable />
     </main>
   );

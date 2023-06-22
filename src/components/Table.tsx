@@ -1,13 +1,9 @@
 import { createSignal, onCleanup, on } from "solid-js";
 import { Component, createEffect } from "solid-js";
 import ItemTable from "./ItemTable";
+import { ItemProps } from "./ItemTable";
 
-interface ItemProps {
-  id: number;
-  name: string;
-  editor: string;
-  nb_players: number;
-}
+import gameserive from "../services/gameFetch";
 
 const DataTable = () => {
   const [data, setData] = createSignal<ItemProps[]>([]);
@@ -36,6 +32,8 @@ const DataTable = () => {
         nb_players: 1,
       },
     ]);
+
+    console.log(await gameserive.getAll());
   });
 
   return (
