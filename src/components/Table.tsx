@@ -16,27 +16,13 @@ const DataTable = () => {
   // Fonction pour récupérer les données du tableau (par exemple, à partir d'une API)
   const fetchData = async () => {
     // Effectuer une requête API ou obtenir les données d'une autre source
-    const response = await fetch('https://api.example.com/data');
+    const response = await fetch('http://127.0.0.1:8000/api/game/');
     const jsonData = await response.json();
     setData(jsonData);
   };
 
   createEffect(async () => {
-    // await fetchData()
-    setData([
-      {
-        id: 1,
-        name: 'string',
-        editor: 'string',
-        nb_players: 1
-      },
-      {
-        id: 1,
-        name: 'string',
-        editor: 'string',
-        nb_players: 1
-      }
-    ])
+    await fetchData()
   })
 
   return (
