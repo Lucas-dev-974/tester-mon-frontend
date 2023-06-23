@@ -1,7 +1,6 @@
-import TableHeadColumn from "../atoms/table/TableHeadColumn";
 import TableBody from "../molecul/table/TableBody";
 import TableHead from "../molecul/table/TableHead";
-import ItemTable, { TableActionEnum } from "../molecul/table/TableRow";
+import { TableActionEnum } from "../molecul/table/TableRow";
 import { ItemProps } from "../molecul/table/TableRow";
 
 interface tableProps {
