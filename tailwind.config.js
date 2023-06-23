@@ -8,4 +8,9 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  purge: {
+    options: {
+      safelist: ["bg-[var(--green)]", "bg-[var(--red)]"],
+    },
+  },
 }
