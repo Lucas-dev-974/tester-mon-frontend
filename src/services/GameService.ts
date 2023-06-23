@@ -1,5 +1,4 @@
-import "../__mocks__/fetch.js";
-import { ItemProps } from "../components/ItemTable.jsx";
+import { ItemProps } from "../components/ItemTable.js";
 
 class GameService {
   private static instance: GameService;
