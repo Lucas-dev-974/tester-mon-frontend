@@ -1,4 +1,4 @@
-import { ItemProps } from "../components/ItemTable.js";
+import { ItemProps } from "../components/molecul/table/TableRow.jsx";
 
 class GameService {
   private static instance: GameService;
@@ -31,9 +31,6 @@ class GameService {
   }) {
     const response = await fetch(this.host, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify(data),
     });
 
@@ -44,25 +41,15 @@ class GameService {
     const id = data.id;
     const response = await fetch(`${this.host}/${id}`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
       body: JSON.stringify(data),
     });
-
-    console.log(response);
-
     return await response.json();
   }
 
   public async delete(id: number) {
     const response = await fetch(`${this.host}/${id}`, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
     });
-    console.log(response);
     return await response.json();
   }
 }
