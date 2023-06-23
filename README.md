@@ -61,3 +61,8 @@ Add:
         ...,
         "test": "jest"
     }
+
+## tsconfig.json 
+replace field "types" by
+
+    "types": ["vite/client", "jest", "@testing-library/jest-dom"],
